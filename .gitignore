@@ -1,0 +1,71 @@
+############################################
+# OS / Editor junk
+############################################
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+############################################
+# Logs
+############################################
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+############################################
+# Environment variables / secrets
+############################################
+.env
+.env.*
+!.env.example
+
+############################################
+# Terraform (CRITICAL)
+############################################
+# Local Terraform state (never commit)
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+
+# Terraform variable values (often contain secrets)
+terraform/*.tfvars
+terraform/*.tfvars.json
+
+############################################
+# Node / JS (future-proof)
+############################################
+node_modules/
+npm-cache/
+.yarn/
+.pnpm-store/
+
+############################################
+# Build outputs (frameworks later)
+############################################
+dist/
+build/
+out/
+
+############################################
+# Zips / deployment artifacts
+############################################
+*.zip
+
+############################################
+# Azure CLI local auth cache
+############################################
+.azure/
+
+############################################
+# Temporary files
+############################################
+tmp/
+temp/
+
