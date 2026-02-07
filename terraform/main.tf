@@ -17,16 +17,16 @@ resource "azurerm_linux_web_app" "app" {
   location            = azurerm_resource_group.app_rg.location
   service_plan_id     = azurerm_service_plan.asp.id
 
- site_config {
+  site_config {
     app_command_line = ""
+
     application_stack {
       node_version = "18-lts"
     }
-    
+  }
+
   app_settings = {
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
     WEBSITE_RUN_FROM_PACKAGE            = "1"
   }
 }
-
-
