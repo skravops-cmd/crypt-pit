@@ -3,25 +3,19 @@ resource "azurerm_resource_group" "app_rg" {
   location = "italynorth"
 }
 
-resource "azurerm_service_plan" "asp" {
-  name                = "asp-dev"
+resource "azurerm_static_site" "cryptpit" {
+  name                = "cryptpit-dev-28450"
   resource_group_name = azurerm_resource_group.app_rg.name
   location            = azurerm_resource_group.app_rg.location
-  os_type             = "Linux"
-  sku_name            = "B1"
-}
+  sku_tier            = "Free"
 
-resource "azurerm_linux_web_app" "app" {
-  name                = "crypt-pit-dev-28450"
-  resource_group_name = azurerm_resource_group.app_rg.name
-  location            = azurerm_resource_group.app_rg.location
-  service_plan_id     = azurerm_service_plan.asp.id
+  repository_url = "https://github.com/skravops-cmd/crypt-pit"
+  branch         = "main"
 
-    site_config {
-    app_command_line = "pm2 serve /home/site/wwwroot --no-daemon"
-  }
-
-  app_settings = {
-    WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
+  build_properties {
+    app_location    = "app" # index.html folder app
+    api_location    = ""    # no API
+    output_location = "."   # static files go at root
   }
 }
+
