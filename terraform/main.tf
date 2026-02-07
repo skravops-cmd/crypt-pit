@@ -22,10 +22,6 @@ resource "azurerm_linux_web_app" "app" {
   }
 
   app_settings = {
-    WEBSITE_RUN_FROM_PACKAGE = "1"
-  }
-  
-  app_settings = {
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = "true"
     WEBSITE_RUN_FROM_PACKAGE            = "1"
   }
