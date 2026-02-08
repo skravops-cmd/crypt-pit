@@ -1,21 +1,50 @@
-resource "azurerm_resource_group" "app_rg" {
-  name     = "CryptPitDevRG"
-  location = "italynorth"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+    azapi = {
+      source  = "azure/azapi"
+      version = ">= 2.0.0"
+    }
+  }
 }
 
-resource "azurerm_static_site" "cryptpit" {
-  name                = "cryptpit-dev-28450"
-  resource_group_name = azurerm_resource_group.app_rg.name
-  location            = azurerm_resource_group.app_rg.location
-  sku_tier            = "Free"
+provider "azurerm" {
+  features {}
+}
 
-  repository_url = "https://github.com/skravops-cmd/crypt-pit"
-  branch         = "main"
+provider "azapi" {}
 
-  build_properties {
-    app_location    = "app" # index.html folder app
-    api_location    = ""    # no API
-    output_location = "."   # static files go at root
+# Resource Group
+resource "azurerm_resource_group" "app_rg" {
+  name     = "CryptPitDevRG"
+  location = "westeurope"
+}
+
+# Static Web App
+resource "azapi_resource" "static_site" {
+  type      = "Microsoft.Web/staticSites@2022-03-01"
+  name      = "cryptpit-dev-28450"
+  parent_id = azurerm_resource_group.app_rg.id
+
+  location = azurerm_resource_group.app_rg.location
+
+
+  body = {
+    sku = {
+      name = "Free"
+      tier = "Free"
+    }
+
+    properties = {}
   }
+}
+
+
+# 3️⃣ Output
+output "static_web_app_name" {
+  value = azapi_resource.static_site.name
 }
 
