@@ -1,9 +1,39 @@
-<!doctype html>
-<html>
-	<head>
-		<title>This is the title of the webpage!</title>
-	</head>
-	<body>
-		<p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Password Generator</h1>
+  </header>
+
+  <section class="hero">
+    <div class="card">
+      <label for="length">Password Length: <span id="length-value">16</span></label>
+      <input type="range" id="length" min="4" max="64" value="16">
+
+      <div class="options">
+        <label class="toggle"><input type="checkbox" id="uppercase" checked> Include Uppercase</label>
+        <label class="toggle"><input type="checkbox" id="lowercase" checked> Include Lowercase</label>
+        <label class="toggle"><input type="checkbox" id="numbers" checked> Include Numbers</label>
+        <label class="toggle"><input type="checkbox" id="symbols" checked> Include Symbols</label>
+      </div>
+
+      <div class="result">
+        <div id="password" class="password-blocks" title="Click to copy"></div>
+        <button id="copy">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Password Generator
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
