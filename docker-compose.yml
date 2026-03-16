@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  crypt-pit:
+    build: .
+    container_name: crypt-pit
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cryptpit.rule=Host(`crypt.skravops.xyz`)"
+      - "traefik.http.routers.cryptpit.entrypoints=websecure"
+      - "traefik.http.routers.cryptpit.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cryptpit.loadbalancer.server.port=80"
