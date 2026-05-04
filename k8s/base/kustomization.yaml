@@ -9,9 +9,11 @@ resources:
   - service.yaml
   - ingressroute.yaml
 
-commonLabels:
-  app: crypt-pit
-  managed-by: kustomize
+labels:
+  - includeSelectors: true
+    pairs:
+      app: crypt-pit
+      managed-by: kustomize
 
 images:
   - name: ghcr.io/skravops-cmd/crypt-pit
